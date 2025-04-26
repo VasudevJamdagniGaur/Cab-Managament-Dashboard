@@ -42,12 +42,71 @@ export function RidesTable({ rides: initialRides }: RidesTableProps) {
   
   // Filter rides based on search term, tab, time slot, and branch
   const filteredRides = initialRides.filter(ride => {
+    // Filter by search term
     const matchesSearch = !searchTerm || 
       ride.user.fullName.toLowerCase().includes(searchTerm.toLowerCase()) || 
       ride.cab.number.toLowerCase().includes(searchTerm.toLowerCase());
     
-    // In a real app, we would apply more filters based on selected tab, time slot, branch
-    return matchesSearch;
+    // Filter by selected tab (time period)
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const rideDate = new Date(ride.startTime);
+    
+    let matchesTimePeriod = true;
+    if (selectedTab === "today") {
+      // Today
+      matchesTimePeriod = rideDate.getFullYear() === today.getFullYear() && 
+                           rideDate.getMonth() === today.getMonth() && 
+                           rideDate.getDate() === today.getDate();
+    } else if (selectedTab === "week") {
+      // This week
+      const weekAgo = new Date(today);
+      weekAgo.setDate(today.getDate() - 7);
+      matchesTimePeriod = rideDate >= weekAgo;
+    } else if (selectedTab === "month") {
+      // This month
+      matchesTimePeriod = rideDate.getFullYear() === today.getFullYear() && 
+                           rideDate.getMonth() === today.getMonth();
+    }
+    
+    // Filter by time slot
+    let matchesTimeSlot = true;
+    if (timeSlot !== "all") {
+      const hour = rideDate.getHours();
+      if (timeSlot === "morning") {
+        matchesTimeSlot = hour >= 6 && hour < 12;
+      } else if (timeSlot === "afternoon") {
+        matchesTimeSlot = hour >= 12 && hour < 18;
+      } else if (timeSlot === "evening") {
+        matchesTimeSlot = hour >= 18;
+      }
+    }
+    
+    // Filter by branch
+    let matchesBranch = true;
+    if (branch !== "all") {
+      // In a real app, we would filter by branch data
+      // For this demo, let's use the end location as proxy
+      if (branch === "Delhi") {
+        matchesBranch = ride.endLocation.includes("Delhi") || 
+                        ride.endLocation.includes("Gurgaon") || 
+                        ride.endLocation.includes("Gurugram") || 
+                        ride.endLocation.includes("Noida") || 
+                        ride.endLocation.includes("Ghaziabad");
+      } else if (branch === "Mumbai") {
+        matchesBranch = ride.endLocation.includes("Mumbai") || 
+                        ride.endLocation.includes("Bandra") || 
+                        ride.endLocation.includes("Powai");
+      } else if (branch === "Bangalore") {
+        matchesBranch = ride.endLocation.includes("Bangalore") || 
+                        ride.endLocation.includes("Electronic City") || 
+                        ride.endLocation.includes("Whitefield");
+      } else if (branch === "Hyderabad") {
+        matchesBranch = ride.endLocation.includes("Hyderabad");
+      }
+    }
+    
+    return matchesSearch && matchesTimePeriod && matchesTimeSlot && matchesBranch;
   });
 
   const getStatusClass = (status: string) => {

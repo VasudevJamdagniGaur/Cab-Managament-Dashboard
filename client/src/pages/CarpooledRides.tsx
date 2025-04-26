@@ -32,10 +32,70 @@ export default function CarpooledRides() {
   */
   
   // For demonstration, we're using dummy data
-  const rides = carpooledRides;
+  const allRides = carpooledRides;
+  
+  // Apply time period filter
+  const filterRidesByPeriod = (rides: typeof carpooledRides) => {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    
+    return rides.filter(ride => {
+      const rideDate = new Date(ride.startTime);
+      
+      if (period === "today") {
+        // Today: same year, month, and day
+        return rideDate.getFullYear() === today.getFullYear() && 
+               rideDate.getMonth() === today.getMonth() && 
+               rideDate.getDate() === today.getDate();
+      } else if (period === "week") {
+        // This week: within the last 7 days
+        const weekAgo = new Date(today);
+        weekAgo.setDate(today.getDate() - 7);
+        return rideDate >= weekAgo;
+      } else if (period === "month") {
+        // This month: same year and month
+        return rideDate.getFullYear() === today.getFullYear() && 
+               rideDate.getMonth() === today.getMonth();
+      }
+      
+      // Default: return all rides
+      return true;
+    });
+  };
+  
+  // Apply branch filter
+  const filterRidesByBranch = (rides: typeof carpooledRides) => {
+    if (branch === "all") return rides;
+    
+    // For this example, we'll use the endLocation to filter by branch/city
+    // In a real app, this would be based on branch IDs or more precise data
+    return rides.filter(ride => {
+      if (branch === "Delhi") {
+        return ride.endLocation.includes("Gurugram") || 
+               ride.endLocation.includes("Delhi") || 
+               ride.endLocation.includes("Noida") || 
+               ride.endLocation.includes("Ghaziabad");
+      } else if (branch === "Mumbai") {
+        return ride.endLocation.includes("Mumbai") || 
+               ride.endLocation.includes("Powai") || 
+               ride.endLocation.includes("Bandra");
+      } else if (branch === "Bangalore") {
+        return ride.endLocation.includes("Bangalore") || 
+               ride.endLocation.includes("Electronic City") || 
+               ride.endLocation.includes("Whitefield");
+      } else if (branch === "Hyderabad") {
+        return ride.endLocation.includes("Hyderabad");
+      }
+      return true;
+    });
+  };
+  
+  // Apply both filters
+  const periodFilteredRides = filterRidesByPeriod(allRides);
+  const branchFilteredRides = filterRidesByBranch(periodFilteredRides);
   
   // Filter rides based on search query
-  const filteredRides = rides.filter(ride => {
+  const filteredRides = branchFilteredRides.filter(ride => {
     if (!searchQuery) return true;
     
     const employeeNames = ride.users.map(user => user.fullName.toLowerCase()).join(" ");
