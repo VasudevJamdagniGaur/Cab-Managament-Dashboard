@@ -1,14 +1,20 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Maximize, RefreshCw } from "lucide-react";
-import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
-import { Icon, LatLngExpression } from "leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from "react-leaflet";
+import L, { Icon, LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// Fix Leaflet marker icons issue in React
-import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
+// Fix Leaflet marker icons issue in React by explicitly setting the paths
+const markerIcon = L.icon({
+  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
 
 // Delhi coordinates
 const DELHI_POSITION: LatLngExpression = [28.6139, 77.2090];
@@ -45,18 +51,14 @@ export function LiveMap() {
   const [isLoading, setIsLoading] = useState(false);
   const [mapReady, setMapReady] = useState(false);
 
-  // Fix Leaflet's default icon
+  // Set the map as ready once component is mounted
   useEffect(() => {
-    delete (window as any).L.Icon.Default.prototype._getIconUrl;
-    (window as any).L.Icon.Default.mergeOptions({
-      iconRetinaUrl: markerIcon2x,
-      iconUrl: markerIcon,
-      shadowUrl: markerShadow,
-    });
-  }, []);
-
-  useEffect(() => {
-    setMapReady(true);
+    // Set a small delay to ensure the DOM is fully loaded
+    const timer = setTimeout(() => {
+      setMapReady(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const handleRefresh = () => {
@@ -67,28 +69,37 @@ export function LiveMap() {
     }, 1000);
   };
 
-  // Custom marker icons
-  const movingIcon = new Icon({
-    iconUrl: markerIcon,
+  // Custom marker icons with different CSS classes for coloring
+  const movingIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
+    shadowSize: [41, 41],
     className: 'moving-marker'
   });
 
-  const idleIcon = new Icon({
-    iconUrl: markerIcon,
+  const idleIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
+    shadowSize: [41, 41],
     className: 'idle-marker'
   });
 
-  const delayedIcon = new Icon({
-    iconUrl: markerIcon,
+  const delayedIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
+    shadowSize: [41, 41],
     className: 'delayed-marker'
   });
 
@@ -97,7 +108,7 @@ export function LiveMap() {
       case "moving": return movingIcon;
       case "idle": return idleIcon;
       case "delayed": return delayedIcon;
-      default: return new Icon.Default();
+      default: return markerIcon;
     }
   };
 
