@@ -91,11 +91,9 @@ export function CarpoolingSuggestions({ suggestions, onSuggestionUpdate }: Carpo
           <h2 className="text-lg font-semibold text-gray-900">Carpooling Suggestions</h2>
           <span className="ml-2 px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-800">New</span>
         </div>
-        <Link href="/carpooling">
-          <a className="text-primary hover:text-primary-700 text-sm font-medium flex items-center">
-            <span>Manage</span>
-            <ChevronRight className="ml-1 h-4 w-4" />
-          </a>
+        <Link href="/carpooling" className="text-primary hover:text-primary-700 text-sm font-medium flex items-center">
+          <span>Manage</span>
+          <ChevronRight className="ml-1 h-4 w-4" />
         </Link>
       </div>
       <div className="p-5">

@@ -118,6 +118,17 @@ export function ChatAssistant() {
       return "Because Amit Shah car was unclean 3 days ago";
     }
     
+    // Add special response for Narendra Modi's happiness
+    if (input.includes("narendra modi") && 
+        (input.includes("happy") || input.includes("satisfied") || input.includes("pleased"))) {
+      return "Because he made a new friend Rahul Gandhi and he loves to share his ride with him";
+    }
+    
+    // General response for any question mentioning Narendra Modi
+    if (input.includes("narendra modi")) {
+      return "Because he made a new friend Rahul Gandhi and he loves to share his ride with him";
+    }
+    
     // Fallback response
     return "I'm not sure about that. You can ask me about cab sharing details or passenger interactions.";
   };
