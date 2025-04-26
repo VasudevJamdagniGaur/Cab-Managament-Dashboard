@@ -112,6 +112,12 @@ export function ChatAssistant() {
       return "Amit Shah shared his last cab with Smriti Irani. He gave a 3-star rating because the car was not clean. The driver was Rajesh Kumar (ID: DRV-2834), contact: +91 98765-43210, driving a white Toyota Innova (DL-01-AB-1234).";
     }
     
+    // Add specific response for "Why Amit Shah was unhappy?"
+    if (input.includes("why") && input.includes("amit shah") && 
+        (input.includes("unhappy") || input.includes("not happy") || input.includes("upset"))) {
+      return "Because Amit Shah car was unclean 3 days ago";
+    }
+    
     // Fallback response
     return "I'm not sure about that. You can ask me about cab sharing details or passenger interactions.";
   };
