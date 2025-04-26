@@ -71,7 +71,7 @@ export function Sidebar({ className }: SidebarProps) {
           <div className="bg-primary text-white rounded-lg p-2 mr-3">
             <Truck className="h-5 w-5" />
           </div>
-          <h1 className="text-xl font-semibold text-gray-900">CorpCab</h1>
+          <h1 className="text-xl font-semibold text-gray-900">Norimono</h1>
         </div>
       </div>
       <div className="mt-6 flex-1 flex flex-col overflow-y-auto">

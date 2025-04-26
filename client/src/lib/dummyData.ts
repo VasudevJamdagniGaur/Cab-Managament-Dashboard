@@ -186,6 +186,99 @@ export const carpoolSuggestions = [
   }
 ];
 
+export const carpooledRides = [
+  {
+    id: 101,
+    startTime: new Date(new Date().setHours(9, 0, 0, 0)),
+    users: [
+      {
+        id: 2,
+        fullName: "Priya Sharma",
+        department: "Sales",
+        profileImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+      },
+      {
+        id: 3,
+        fullName: "Rajiv Kumar",
+        department: "Marketing",
+        profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+      }
+    ],
+    startLocation: "Sector 15, Gurugram",
+    endLocation: "Cyber City, Gurugram",
+    cab: {
+      id: 1,
+      number: "DL 01 AB 1234",
+      model: "Toyota Innova",
+      color: "White"
+    },
+    status: "Completed",
+    savingsAmount: 380
+  },
+  {
+    id: 102,
+    startTime: new Date(new Date().setHours(10, 15, 0, 0)),
+    users: [
+      {
+        id: 4,
+        fullName: "Neha Gupta",
+        department: "HR",
+        profileImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e"
+      },
+      {
+        id: 5,
+        fullName: "Amit Singh",
+        department: "Finance",
+        profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+      }
+    ],
+    startLocation: "Vaishali, Ghaziabad",
+    endLocation: "Noida Sector 62",
+    cab: {
+      id: 2,
+      number: "MH 02 XY 5678",
+      model: "Maruti Swift Dzire",
+      color: "Silver"
+    },
+    status: "Confirmed",
+    savingsAmount: 420
+  },
+  {
+    id: 103,
+    startTime: new Date(new Date().setHours(17, 30, 0, 0)),
+    users: [
+      {
+        id: 6,
+        fullName: "Sandeep Mehta",
+        department: "Engineering",
+        profileImage: "https://images.unsplash.com/photo-1599566150163-29194dcaad36"
+      },
+      {
+        id: 7,
+        fullName: "Kavita Reddy",
+        department: "Engineering",
+        profileImage: "https://images.unsplash.com/photo-1580489944761-15a19d654956"
+      },
+      {
+        id: 8,
+        fullName: "Rohit Gupta",
+        department: "Engineering",
+        profileImage: "https://images.unsplash.com/photo-1541271696563-3be2f555fc4e"
+      }
+    ],
+    startLocation: "Whitefield, Bangalore",
+    endLocation: "Electronic City, Bangalore",
+    cab: {
+      id: 3,
+      number: "KA 03 CD 9012",
+      model: "Honda City",
+      color: "Black"
+    },
+    status: "In Process",
+    savingsAmount: 550
+  }
+];
+
 // Additional data for the Total Rides page
 export const ridesStats = {
   totalRides: 1458,

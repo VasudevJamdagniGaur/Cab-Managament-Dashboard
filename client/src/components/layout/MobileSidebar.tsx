@@ -115,7 +115,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             <div className="bg-primary text-white rounded-lg p-2 mr-3">
               <Truck className="h-5 w-5" />
             </div>
-            <h1 className="text-xl font-semibold text-gray-900">CorpCab</h1>
+            <h1 className="text-xl font-semibold text-gray-900">Norimono</h1>
           </div>
           <button 
             onClick={onClose}
