@@ -139,6 +139,55 @@ export const monthlyCostData = [
   { month: "October", cost: 386420 }
 ];
 
+export const dailyCostData = [
+  { day: "Mon", cost: 12540 },
+  { day: "Tue", cost: 14250 },
+  { day: "Wed", cost: 13980 },
+  { day: "Thu", cost: 15720 },
+  { day: "Fri", cost: 16300 },
+  { day: "Sat", cost: 10450 },
+  { day: "Sun", cost: 8760 }
+];
+
+export const weeklyCostData = [
+  { week: "Week 1", cost: 92000 },
+  { week: "Week 2", cost: 88500 },
+  { week: "Week 3", cost: 95600 },
+  { week: "Week 4", cost: 110320 }
+];
+
+export const yearlyCostData = [
+  { year: "2023", cost: 2850560 },
+  { year: "2022", cost: 2210420 },
+  { year: "2021", cost: 1895670 }
+];
+
+export const billingReports = {
+  daily: [
+    { id: 101, date: new Date(Date.now() - 0 * 24 * 60 * 60 * 1000), period: "Today", amount: 16300, status: "Pending" },
+    { id: 102, date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), period: "Yesterday", amount: 15720, status: "Pending" },
+    { id: 103, date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), period: "2 days ago", amount: 13980, status: "Paid" }
+  ],
+  weekly: [
+    { id: 201, date: new Date(Date.now() - 0 * 7 * 24 * 60 * 60 * 1000), period: "This Week", amount: 110320, status: "Pending" },
+    { id: 202, date: new Date(Date.now() - 1 * 7 * 24 * 60 * 60 * 1000), period: "Last Week", amount: 95600, status: "Paid" },
+    { id: 203, date: new Date(Date.now() - 2 * 7 * 24 * 60 * 60 * 1000), period: "2 Weeks Ago", amount: 88500, status: "Paid" },
+    { id: 204, date: new Date(Date.now() - 3 * 7 * 24 * 60 * 60 * 1000), period: "3 Weeks Ago", amount: 92000, status: "Paid" }
+  ],
+  monthly: [
+    { id: 1, date: new Date(2023, 9, 15), period: "October 2023", amount: 386420, status: "Pending" },
+    { id: 2, date: new Date(2023, 8, 15), period: "September 2023", amount: 368230, status: "Paid" },
+    { id: 3, date: new Date(2023, 7, 15), period: "August 2023", amount: 348790, status: "Paid" },
+    { id: 4, date: new Date(2023, 6, 15), period: "July 2023", amount: 295670, status: "Paid" },
+    { id: 5, date: new Date(2023, 5, 15), period: "June 2023", amount: 310420, status: "Paid" }
+  ],
+  yearly: [
+    { id: 301, date: new Date(2023, 0, 1), period: "2023", amount: 2850560, status: "Pending" },
+    { id: 302, date: new Date(2022, 0, 1), period: "2022", amount: 2210420, status: "Paid" },
+    { id: 303, date: new Date(2021, 0, 1), period: "2021", amount: 1895670, status: "Paid" }
+  ]
+};
+
 export const carpoolSuggestions = [
   {
     id: 1,

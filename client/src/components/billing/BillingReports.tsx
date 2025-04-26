@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { Download, FileText } from "lucide-react";
 
+// Import billing data
+import { billingReports as allBillingReports } from "@/lib/dummyData";
+
 // This would come from the API in a real app
 interface BillingReport {
   id: number;
@@ -17,18 +20,21 @@ interface BillingReport {
 export function BillingReports() {
   const [selectedTab, setSelectedTab] = useState("monthly");
   
-  // Mock data for demonstration
-  const billingReports: BillingReport[] = [
-    { id: 1, date: new Date(2023, 9, 15), period: "October 2023", amount: 386420, status: "Pending" },
-    { id: 2, date: new Date(2023, 8, 15), period: "September 2023", amount: 368230, status: "Paid" },
-    { id: 3, date: new Date(2023, 7, 15), period: "August 2023", amount: 348790, status: "Paid" },
-    { id: 4, date: new Date(2023, 6, 15), period: "July 2023", amount: 295670, status: "Paid" },
-    { id: 5, date: new Date(2023, 5, 15), period: "June 2023", amount: 310420, status: "Paid" },
-  ];
-
   // Filter reports based on selected tab
-  // In a real app, we would fetch different data based on the tab
-  const getReports = () => billingReports;
+  const getReports = () => {
+    switch (selectedTab) {
+      case "daily":
+        return allBillingReports.daily;
+      case "weekly":
+        return allBillingReports.weekly;
+      case "monthly":
+        return allBillingReports.monthly;
+      case "yearly":
+        return allBillingReports.yearly;
+      default:
+        return allBillingReports.monthly;
+    }
+  };
   
   const handleExportInvoice = () => {
     // In a real app, this would trigger a PDF download
@@ -49,6 +55,7 @@ export function BillingReports() {
             <TabsTrigger value="daily">Daily</TabsTrigger>
             <TabsTrigger value="weekly">Weekly</TabsTrigger>
             <TabsTrigger value="monthly">Monthly</TabsTrigger>
+            <TabsTrigger value="yearly">Yearly</TabsTrigger>
           </TabsList>
         </Tabs>
       </CardHeader>

@@ -6,7 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // Import dummy data (would be replaced with API calls in a real app)
-import { costBreakdown, monthlyCostData } from "@/lib/dummyData";
+import { 
+  costBreakdown, 
+  monthlyCostData, 
+  dailyCostData, 
+  weeklyCostData, 
+  yearlyCostData 
+} from "@/lib/dummyData";
 
 export default function CostBilling() {
   const [period, setPeriod] = useState("monthly");
@@ -26,6 +32,22 @@ export default function CostBilling() {
     costPerKm,
     departmentCosts
   } = costBreakdown;
+  
+  // Get the appropriate chart data based on selected period
+  const getChartData = () => {
+    switch (period) {
+      case "daily":
+        return dailyCostData;
+      case "weekly":
+        return weeklyCostData;
+      case "monthly":
+        return monthlyCostData;
+      case "yearly":
+        return yearlyCostData;
+      default:
+        return monthlyCostData;
+    }
+  };
 
   return (
     <DashboardLayout title="Cost & Billing">
@@ -41,6 +63,7 @@ export default function CostBilling() {
               <SelectItem value="daily">Daily</SelectItem>
               <SelectItem value="weekly">Weekly</SelectItem>
               <SelectItem value="monthly">Monthly</SelectItem>
+              <SelectItem value="yearly">Yearly</SelectItem>
             </SelectContent>
           </Select>
           
@@ -64,7 +87,7 @@ export default function CostBilling() {
         avgPerRide={avgPerRide}
         costPerKm={costPerKm}
         departmentCosts={departmentCosts}
-        chartData={monthlyCostData}
+        chartData={getChartData()}
       />
       
       <BillingReports />
