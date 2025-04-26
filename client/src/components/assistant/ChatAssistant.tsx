@@ -107,6 +107,11 @@ export function ChatAssistant() {
       return "Amit Shah shared a cab with Smriti Irani.";
     }
     
+    // Add specific response for the last cab sharing details requested by the user
+    if (input.includes("amit shah") && (input.includes("last cab") || input.includes("last ride"))) {
+      return "Amit Shah shared his last cab with Smriti Irani. He gave a 3-star rating because the car was not clean. The driver was Rajesh Kumar (ID: DRV-2834), contact: +91 98765-43210, driving a white Toyota Innova (DL-01-AB-1234).";
+    }
+    
     // Fallback response
     return "I'm not sure about that. You can ask me about cab sharing details or passenger interactions.";
   };
