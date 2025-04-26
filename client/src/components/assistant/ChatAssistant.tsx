@@ -36,8 +36,14 @@ export function ChatAssistant() {
     scrollToBottom();
   }, [messages]);
 
+  // For debugging
+  useEffect(() => {
+    console.log("Current messages:", messages);
+  }, [messages]);
+  
   // Function to generate response based on user input
   const generateResponse = (userInput: string): string => {
+    console.log("Generating response for:", userInput);
     const input = userInput.toLowerCase();
     
     // Greetings
@@ -109,27 +115,50 @@ export function ChatAssistant() {
   const handleSendMessage = () => {
     if (!inputText.trim()) return;
     
-    // Add user message
+    // Store the current input before clearing it
+    const currentInput = inputText;
+    
+    // Add user message - we assign an explicit ID for debugging purposes
+    const userMessageId = Date.now().toString();
     const userMessage: Message = {
-      id: Date.now().toString(),
-      text: inputText,
+      id: userMessageId,
+      text: currentInput,
       sender: "user",
       timestamp: new Date()
     };
     
-    setMessages(prev => [...prev, userMessage]);
+    console.log("Adding user message:", userMessage);
+    
+    // Update messages array with the user message
+    setMessages(prevMessages => {
+      const updatedMessages = [...prevMessages, userMessage];
+      console.log("Updated messages after user input:", updatedMessages);
+      return updatedMessages;
+    });
+    
+    // Clear input field
     setInputText("");
     
-    // Simulate processing time
+    // Simulate processing time before bot responds
     setTimeout(() => {
+      const responseText = generateResponse(currentInput);
+      console.log("Generated response:", responseText);
+      
       const assistantResponse: Message = {
-        id: (Date.now() + 1).toString(),
-        text: generateResponse(inputText),
+        id: (Date.now() + 100).toString(), // Ensure unique ID
+        text: responseText,
         sender: "assistant",
         timestamp: new Date()
       };
       
-      setMessages(prev => [...prev, assistantResponse]);
+      console.log("Adding assistant response:", assistantResponse);
+      
+      // Update messages array with the assistant response
+      setMessages(prevMessages => {
+        const updatedMessages = [...prevMessages, assistantResponse];
+        console.log("Updated messages after assistant response:", updatedMessages);
+        return updatedMessages;
+      });
     }, 500);
   };
   
@@ -167,51 +196,54 @@ export function ChatAssistant() {
           <CardContent className="p-0 flex-grow overflow-hidden flex flex-col">
             {/* Chat messages */}
             <div className="flex-grow overflow-y-auto p-4">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${
-                    message.sender === "assistant" ? "justify-start" : "justify-end"
-                  } mb-3`}
-                >
+              {messages.map((message) => {
+                console.log("Rendering message:", message);
+                return (
                   <div
-                    className={`flex max-w-[80%] items-start gap-2 ${
-                      message.sender === "assistant"
-                        ? "flex-row"
-                        : "flex-row-reverse"
-                    }`}
+                    key={message.id}
+                    className={`flex ${
+                      message.sender === "assistant" ? "justify-start" : "justify-end"
+                    } mb-3`}
                   >
                     <div
-                      className={`flex h-8 w-8 items-center justify-center rounded-full ${
+                      className={`flex max-w-[80%] items-start gap-2 ${
                         message.sender === "assistant"
-                          ? "bg-primary-100 text-primary-600"
-                          : "bg-primary-600 text-white"
+                          ? "flex-row"
+                          : "flex-row-reverse"
                       }`}
                     >
-                      {message.sender === "assistant" ? (
-                        <BotIcon className="h-5 w-5" />
-                      ) : (
-                        <UserIcon className="h-5 w-5" />
-                      )}
-                    </div>
-                    <div
-                      className={`rounded-lg p-3 ${
-                        message.sender === "assistant"
-                          ? "bg-gray-100 text-gray-800"
-                          : "bg-primary-600 text-white"
-                      }`}
-                    >
-                      <p className="text-sm">{message.text}</p>
-                      <p className="mt-1 text-right text-xs opacity-70">
-                        {message.timestamp.toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </p>
+                      <div
+                        className={`flex h-8 w-8 items-center justify-center rounded-full ${
+                          message.sender === "assistant"
+                            ? "bg-gray-200"
+                            : "bg-blue-600"
+                        }`}
+                      >
+                        {message.sender === "assistant" ? (
+                          <BotIcon className="h-5 w-5 text-gray-700" />
+                        ) : (
+                          <UserIcon className="h-5 w-5 text-white" />
+                        )}
+                      </div>
+                      <div
+                        className={`rounded-lg p-3 ${
+                          message.sender === "assistant"
+                            ? "bg-gray-100 text-gray-800"
+                            : "bg-blue-600 text-white"
+                        }`}
+                      >
+                        <p className="text-sm whitespace-pre-wrap break-words">{message.text}</p>
+                        <p className="mt-1 text-right text-xs opacity-70">
+                          {message.timestamp.toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
               <div ref={messagesEndRef} />
             </div>
             
