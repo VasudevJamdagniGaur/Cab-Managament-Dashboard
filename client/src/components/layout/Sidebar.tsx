@@ -9,6 +9,7 @@ import {
   MessageSquare,
   Settings,
   HelpCircle,
+  UserPlus,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -33,6 +34,11 @@ export function Sidebar({ className }: SidebarProps) {
       label: "Employees",
       icon: Users,
       href: "/employees",
+    },
+    {
+      label: "Add New Employee",
+      icon: UserPlus,
+      href: "/add-employee",
     },
     {
       label: "Real-Time Tracking",
