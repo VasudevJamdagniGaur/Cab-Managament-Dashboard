@@ -11,6 +11,7 @@ import EmployeeUsageStats from "@/pages/EmployeeUsageStats";
 import LiveTripTracking from "@/pages/LiveTripTracking";
 import CostBilling from "@/pages/CostBilling";
 import UserReviews from "@/pages/UserReviews";
+import CarpooledRides from "@/pages/CarpooledRides";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/live-tracking" component={LiveTripTracking} />
       <Route path="/billing" component={CostBilling} />
       <Route path="/reviews" component={UserReviews} />
+      <Route path="/carpooling" component={CarpooledRides} />
       <Route component={NotFound} />
     </Switch>
   );

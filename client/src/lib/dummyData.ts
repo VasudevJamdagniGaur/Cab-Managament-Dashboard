@@ -55,7 +55,7 @@ export const scheduledRides = [
     startTime: new Date(new Date().setHours(9, 30, 0, 0)),
     user: {
       id: 2,
-      fullName: "Priya Sharma",
+      fullName: "Narendra Modi",
       department: "Sales",
       profileImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
     },
@@ -74,7 +74,7 @@ export const scheduledRides = [
     startTime: new Date(new Date().setHours(10, 15, 0, 0)),
     user: {
       id: 3,
-      fullName: "Rajiv Kumar",
+      fullName: "Rahul Gandhi",
       department: "Marketing",
       profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
     },
@@ -93,7 +93,7 @@ export const scheduledRides = [
     startTime: new Date(new Date().setHours(11, 45, 0, 0)),
     user: {
       id: 4,
-      fullName: "Neha Gupta",
+      fullName: "Smriti Irani",
       department: "HR",
       profileImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e"
     },
@@ -146,12 +146,12 @@ export const carpoolSuggestions = [
     savingsAmount: 380,
     user1: {
       id: 2,
-      fullName: "Priya Sharma",
+      fullName: "Narendra Modi",
       profileImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
     },
     user2: {
       id: 3,
-      fullName: "Rajiv Kumar",
+      fullName: "Rahul Gandhi",
       profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
     },
     ride1: {
@@ -168,12 +168,12 @@ export const carpoolSuggestions = [
     savingsAmount: 420,
     user1: {
       id: 4,
-      fullName: "Neha Gupta",
+      fullName: "Smriti Irani",
       profileImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e"
     },
     user2: {
       id: 5,
-      fullName: "Amit Singh",
+      fullName: "Amit Shah",
       profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
     },
     ride1: {
@@ -193,13 +193,13 @@ export const carpooledRides = [
     users: [
       {
         id: 2,
-        fullName: "Priya Sharma",
+        fullName: "Narendra Modi",
         department: "Sales",
         profileImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
       },
       {
         id: 3,
-        fullName: "Rajiv Kumar",
+        fullName: "Rahul Gandhi",
         department: "Marketing",
         profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
       }
@@ -221,13 +221,13 @@ export const carpooledRides = [
     users: [
       {
         id: 4,
-        fullName: "Neha Gupta",
+        fullName: "Smriti Irani",
         department: "HR",
         profileImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e"
       },
       {
         id: 5,
-        fullName: "Amit Singh",
+        fullName: "Amit Shah",
         department: "Finance",
         profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
       }
@@ -249,19 +249,19 @@ export const carpooledRides = [
     users: [
       {
         id: 6,
-        fullName: "Sandeep Mehta",
+        fullName: "Arvind Kejriwal",
         department: "Engineering",
         profileImage: "https://images.unsplash.com/photo-1599566150163-29194dcaad36"
       },
       {
         id: 7,
-        fullName: "Kavita Reddy",
+        fullName: "Mamata Banerjee",
         department: "Engineering",
         profileImage: "https://images.unsplash.com/photo-1580489944761-15a19d654956"
       },
       {
         id: 8,
-        fullName: "Rohit Gupta",
+        fullName: "Yogi Adityanath",
         department: "Engineering",
         profileImage: "https://images.unsplash.com/photo-1541271696563-3be2f555fc4e"
       }
@@ -294,7 +294,7 @@ export const employeeStats = {
   employees: [
     {
       id: 2,
-      fullName: "Priya Sharma",
+      fullName: "Narendra Modi",
       branch: "Delhi",
       totalRides: 78,
       ridesToday: 2,
@@ -303,7 +303,7 @@ export const employeeStats = {
     },
     {
       id: 3,
-      fullName: "Rajiv Kumar",
+      fullName: "Rahul Gandhi",
       branch: "Mumbai",
       totalRides: 64,
       ridesToday: 1,
@@ -312,7 +312,7 @@ export const employeeStats = {
     },
     {
       id: 4,
-      fullName: "Neha Gupta",
+      fullName: "Smriti Irani",
       branch: "Bangalore",
       totalRides: 92,
       ridesToday: 2,
@@ -321,7 +321,7 @@ export const employeeStats = {
     },
     {
       id: 5,
-      fullName: "Amit Singh",
+      fullName: "Amit Shah",
       branch: "Delhi",
       totalRides: 53,
       ridesToday: 1,
@@ -362,7 +362,7 @@ export const reviewsData = {
       id: 1,
       user: {
         id: 2,
-        fullName: "Priya Sharma",
+        fullName: "Narendra Modi",
         profileImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
       },
       rating: 5,
@@ -375,7 +375,7 @@ export const reviewsData = {
       id: 2,
       user: {
         id: 3,
-        fullName: "Rajiv Kumar",
+        fullName: "Rahul Gandhi",
         profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
       },
       rating: 4,
@@ -388,7 +388,7 @@ export const reviewsData = {
       id: 3,
       user: {
         id: 4,
-        fullName: "Neha Gupta",
+        fullName: "Smriti Irani",
         profileImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e"
       },
       rating: 4.5,
@@ -401,7 +401,7 @@ export const reviewsData = {
       id: 4,
       user: {
         id: 5,
-        fullName: "Amit Singh",
+        fullName: "Amit Shah",
         profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
       },
       rating: 3,
