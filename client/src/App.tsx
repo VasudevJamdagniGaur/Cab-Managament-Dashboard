@@ -11,6 +11,7 @@ import { ChatAssistant } from "@/components/assistant/ChatAssistant";
 import Dashboard from "@/pages/Dashboard";
 import TotalRidesStats from "@/pages/TotalRidesStats";
 import EmployeeUsageStats from "@/pages/EmployeeUsageStats";
+import AddEmployee from "@/pages/AddEmployee";
 import LiveTripTracking from "@/pages/LiveTripTracking";
 import CostBilling from "@/pages/CostBilling";
 import UserReviews from "@/pages/UserReviews";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/" component={Dashboard} />
       <Route path="/rides" component={TotalRidesStats} />
       <Route path="/employees" component={EmployeeUsageStats} />
+      <Route path="/add-employee" component={AddEmployee} />
       <Route path="/live-tracking" component={LiveTripTracking} />
       <Route path="/billing" component={CostBilling} />
       <Route path="/reviews" component={UserReviews} />

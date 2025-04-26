@@ -75,16 +75,15 @@ export function Sidebar({ className }: SidebarProps) {
             <Link 
               key={item.href} 
               href={item.href}
-            >
-              <a className={cn(
+              className={cn(
                 "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
                 location === item.href 
                   ? "bg-primary-50 text-primary-700" 
                   : "text-gray-700 hover:bg-gray-50"
-              )}>
-                <item.icon className="mr-3 h-5 w-5" />
-                <span>{item.label}</span>
-              </a>
+              )}
+            >
+              <item.icon className="mr-3 h-5 w-5" />
+              <span>{item.label}</span>
             </Link>
           ))}
           
@@ -98,11 +97,10 @@ export function Sidebar({ className }: SidebarProps) {
             <Link 
               key={item.href} 
               href={item.href}
+              className="group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-50"
             >
-              <a className="group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-50">
-                <item.icon className="mr-3 h-5 w-5" />
-                <span>{item.label}</span>
-              </a>
+              <item.icon className="mr-3 h-5 w-5" />
+              <span>{item.label}</span>
             </Link>
           ))}
         </nav>
