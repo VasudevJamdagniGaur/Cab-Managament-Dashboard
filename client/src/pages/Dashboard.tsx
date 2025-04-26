@@ -18,6 +18,9 @@ import {
   recentReviews,
   liveTrips,
   monthlyCostData,
+  dailyCostData,
+  weeklyCostData,
+  yearlyCostData,
   carpoolSuggestions
 } from "@/lib/dummyData";
 

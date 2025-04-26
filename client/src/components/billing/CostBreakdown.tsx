@@ -9,7 +9,7 @@ interface DepartmentCost {
 }
 
 interface CostData {
-  month: string;
+  [key: string]: any;
   cost: number;
 }
 

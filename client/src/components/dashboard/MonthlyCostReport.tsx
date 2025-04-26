@@ -4,21 +4,42 @@ import { formatCurrency } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { 
+  dailyCostData, 
+  weeklyCostData, 
+  monthlyCostData, 
+  yearlyCostData 
+} from "@/lib/dummyData";
 
-interface CostData {
-  month: string;
+interface ChartData {
+  [key: string]: any;
   cost: number;
 }
 
 interface MonthlyCostReportProps {
-  data: CostData[];
+  data?: any[];
 }
 
 export function MonthlyCostReport({ data }: MonthlyCostReportProps) {
-  const [period, setPeriod] = useState("last_3_months");
+  const [period, setPeriod] = useState("monthly");
 
-  // For simplicity, we're using the same data regardless of period
-  const chartData = data;
+  // Get the appropriate data based on the selected period
+  const getChartData = (): ChartData[] => {
+    switch (period) {
+      case "daily":
+        return dailyCostData;
+      case "weekly":
+        return weeklyCostData;
+      case "monthly":
+        return monthlyCostData;
+      case "yearly":
+        return yearlyCostData;
+      default:
+        return monthlyCostData;
+    }
+  };
+  
+  const chartData = getChartData();
 
   // Calculate total, average per ride, and cost per km
   const totalCost = chartData.reduce((sum, item) => sum + item.cost, 0);
@@ -28,16 +49,21 @@ export function MonthlyCostReport({ data }: MonthlyCostReportProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden">
       <div className="flex items-center justify-between p-5 border-b border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900">Monthly Cost Report</h2>
+        <h2 className="text-lg font-semibold text-gray-900">
+          {period === "daily" ? "Daily" : 
+           period === "weekly" ? "Weekly" : 
+           period === "yearly" ? "Yearly" : "Monthly"} Cost Report
+        </h2>
         <div className="relative">
           <Select value={period} onValueChange={setPeriod}>
             <SelectTrigger className="w-[180px] bg-gray-50 border border-gray-300 text-gray-700 h-8 py-0">
               <SelectValue placeholder="Select Period" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="last_3_months">Last 3 Months</SelectItem>
-              <SelectItem value="last_6_months">Last 6 Months</SelectItem>
-              <SelectItem value="last_year">Last Year</SelectItem>
+              <SelectItem value="daily">Daily</SelectItem>
+              <SelectItem value="weekly">Weekly</SelectItem>
+              <SelectItem value="monthly">Monthly</SelectItem>
+              <SelectItem value="yearly">Yearly</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -55,14 +81,29 @@ export function MonthlyCostReport({ data }: MonthlyCostReportProps) {
               }}
             >
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="month" />
+              <XAxis dataKey={
+                period === "daily" ? "day" : 
+                period === "weekly" ? "week" : 
+                period === "yearly" ? "year" : "month"
+              } />
               <YAxis 
                 tickFormatter={(value) => `₹${(value / 1000).toFixed(0)}k`}
                 width={60}
               />
               <Tooltip 
                 formatter={(value) => [`₹${value.toLocaleString('en-IN')}`, 'Cost']}
-                labelFormatter={(label) => `Month: ${label}`}
+                labelFormatter={(label) => {
+                  switch (period) {
+                    case "daily":
+                      return `Day: ${label}`;
+                    case "weekly":
+                      return `Week: ${label}`;
+                    case "yearly":
+                      return `Year: ${label}`;
+                    default:
+                      return `Month: ${label}`;
+                  }
+                }}
               />
               <Bar 
                 dataKey="cost" 
