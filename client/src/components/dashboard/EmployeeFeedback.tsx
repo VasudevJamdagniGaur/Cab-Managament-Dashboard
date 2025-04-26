@@ -26,11 +26,9 @@ export function EmployeeFeedback({ reviews }: EmployeeFeedbackProps) {
     <div className="bg-white rounded-lg shadow-sm overflow-hidden">
       <div className="flex items-center justify-between p-5 border-b border-gray-200">
         <h2 className="text-lg font-semibold text-gray-900">Employee Feedback</h2>
-        <Link href="/reviews">
-          <a className="text-primary hover:text-primary-700 text-sm font-medium flex items-center">
-            <span>View All</span>
-            <ChevronRight className="ml-1 h-4 w-4" />
-          </a>
+        <Link href="/reviews" className="text-primary hover:text-primary-700 text-sm font-medium flex items-center">
+          <span>View All</span>
+          <ChevronRight className="ml-1 h-4 w-4" />
         </Link>
       </div>
       <div className="p-5 space-y-5">
