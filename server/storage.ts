@@ -429,8 +429,8 @@ export class MemStorage implements IStorage {
       { 
         username: "admin", 
         password: "admin123", 
-        fullName: "Rahul Sharma", 
-        email: "rahul@corpcab.com", 
+        fullName: "Vasudev", 
+        email: "vasudev@norimono.com", 
         role: "admin", 
         branch: "Delhi", 
         department: "Administration",
