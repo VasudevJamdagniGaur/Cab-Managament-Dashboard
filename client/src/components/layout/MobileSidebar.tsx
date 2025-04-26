@@ -80,18 +80,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
     },
   ];
 
-  const secondaryNavItems = [
-    {
-      label: "Settings",
-      icon: Settings,
-      href: "/settings",
-    },
-    {
-      label: "Help & Support",
-      icon: HelpCircle,
-      href: "/support",
-    },
-  ];
+  const secondaryNavItems: { label: string; icon: any; href: string }[] = [];
 
   return (
     <>

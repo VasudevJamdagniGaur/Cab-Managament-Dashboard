@@ -51,18 +51,7 @@ export function Sidebar({ className }: SidebarProps) {
     },
   ];
 
-  const secondaryNavItems = [
-    {
-      label: "Settings",
-      icon: Settings,
-      href: "/settings",
-    },
-    {
-      label: "Help & Support",
-      icon: HelpCircle,
-      href: "/support",
-    },
-  ];
+  const secondaryNavItems: { label: string; icon: any; href: string }[] = [];
 
   return (
     <aside className={cn("hidden md:flex flex-col w-64 bg-white border-r border-gray-200 pt-5 pb-4 flex-shrink-0", className)}>
