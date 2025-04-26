@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import SummaryCard from "@/components/dashboard/SummaryCard";
-import ScheduledRidesTable from "@/components/dashboard/ScheduledRidesTable";
+import CarpooledRidesTable from "@/components/dashboard/CarpooledRidesTable";
 import EmployeeFeedback from "@/components/dashboard/EmployeeFeedback";
 import LiveTripMonitoring from "@/components/dashboard/LiveTripMonitoring";
 import MonthlyCostReport from "@/components/dashboard/MonthlyCostReport";
@@ -14,7 +14,7 @@ import { CarTaxiFront, Car, BanknoteIcon, Star } from "lucide-react";
 // Import dummy data (would be replaced with API calls in a real app)
 import { 
   dashboardStats, 
-  scheduledRides, 
+  carpooledRides, 
   recentReviews,
   liveTrips,
   monthlyCostData,
@@ -45,7 +45,7 @@ export default function Dashboard() {
 
   // For demonstration, we're using dummy data
   const stats = dashboardStats;
-  const rides = scheduledRides;
+  const rides = carpooledRides;
   const reviews = recentReviews;
   
   // Navigate to different dashboard sections when clicking on summary cards
@@ -103,7 +103,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Column */}
         <div className="space-y-6">
-          <ScheduledRidesTable rides={rides} />
+          <CarpooledRidesTable rides={rides} />
           <EmployeeFeedback reviews={reviews} />
         </div>
 
