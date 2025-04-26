@@ -113,11 +113,11 @@ export const liveTrips = [
   {
     id: 1,
     driver: {
-      name: "Vikram Singh",
+      name: "Nitin Gadkari",
       profileImage: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c"
     },
     user: {
-      fullName: "Priya Sharma"
+      fullName: "Narendra Modi"
     },
     cab: {
       number: "DL 01 AB 1234",
@@ -418,11 +418,11 @@ export const activeTrips = [
   {
     id: 1,
     driver: {
-      name: "Vikram Singh",
+      name: "Nitin Gadkari",
       profileImage: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c"
     },
     user: {
-      fullName: "Priya Sharma"
+      fullName: "Narendra Modi"
     },
     cab: {
       number: "DL 01 AB 1234",
@@ -439,11 +439,11 @@ export const activeTrips = [
   {
     id: 2,
     driver: {
-      name: "Rahul Verma",
+      name: "Sharad Pawar",
       profileImage: "https://images.unsplash.com/photo-1531384441138-2736e62e0919"
     },
     user: {
-      fullName: "Rajiv Kumar"
+      fullName: "Rahul Gandhi"
     },
     cab: {
       number: "MH 02 XY 5678",
@@ -460,11 +460,11 @@ export const activeTrips = [
   {
     id: 3,
     driver: {
-      name: "Anil Kumar",
+      name: "Nirmala Sitharaman",
       profileImage: "https://images.unsplash.com/photo-1504593811423-6dd665756598"
     },
     user: {
-      fullName: "Neha Gupta"
+      fullName: "Smriti Irani"
     },
     cab: {
       number: "KA 03 CD 9012",
