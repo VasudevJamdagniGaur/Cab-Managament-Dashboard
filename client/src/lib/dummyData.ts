@@ -76,6 +76,7 @@ export const recentReviews = [
 ];
 
 export const scheduledRides = [
+  // Today's rides
   {
     id: 1,
     startTime: new Date(new Date().setHours(9, 30, 0, 0)),
@@ -132,6 +133,223 @@ export const scheduledRides = [
       color: "Black"
     },
     status: "In Process"
+  },
+  
+  // Yesterday's rides
+  {
+    id: 4,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 1)).setHours(8, 15, 0, 0)),
+    user: {
+      id: 5,
+      fullName: "Amit Shah",
+      department: "Finance",
+      profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+    },
+    startLocation: "Indirapuram",
+    endLocation: "Noida Sector 62",
+    cab: {
+      id: 4,
+      number: "DL 01 CD 5678",
+      model: "Honda Amaze",
+      color: "Silver"
+    },
+    status: "Completed"
+  },
+  {
+    id: 5,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 1)).setHours(9, 45, 0, 0)),
+    user: {
+      id: 6,
+      fullName: "Arvind Kejriwal",
+      department: "Engineering",
+      profileImage: "https://images.unsplash.com/photo-1480455624313-e29b44bbfde1"
+    },
+    startLocation: "Vasant Kunj",
+    endLocation: "Connaught Place, Delhi",
+    cab: {
+      id: 5,
+      number: "DL 02 EF 9012",
+      model: "Toyota Corolla",
+      color: "Black"
+    },
+    status: "Completed"
+  },
+  
+  // This week's rides (2-6 days ago)
+  {
+    id: 6,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 2)).setHours(10, 30, 0, 0)),
+    user: {
+      id: 7,
+      fullName: "Mamata Banerjee",
+      department: "Engineering",
+      profileImage: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604"
+    },
+    startLocation: "Salt Lake",
+    endLocation: "Sector 5, Kolkata",
+    cab: {
+      id: 6,
+      number: "WB 01 GH 3456",
+      model: "Maruti Suzuki Ciaz",
+      color: "White"
+    },
+    status: "Completed"
+  },
+  {
+    id: 7,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 3)).setHours(11, 15, 0, 0)),
+    user: {
+      id: 8,
+      fullName: "Yogi Adityanath",
+      department: "Engineering",
+      profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+    },
+    startLocation: "Hazratganj",
+    endLocation: "Gomti Nagar, Lucknow",
+    cab: {
+      id: 7,
+      number: "UP 32 IJ 7890",
+      model: "Hyundai Verna",
+      color: "Red"
+    },
+    status: "Cancelled"
+  },
+  {
+    id: 8,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 4)).setHours(9, 0, 0, 0)),
+    user: {
+      id: 9,
+      fullName: "Nitin Gadkari",
+      department: "Infrastructure",
+      profileImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d"
+    },
+    startLocation: "Civil Lines",
+    endLocation: "Ramdaspeth, Nagpur",
+    cab: {
+      id: 8,
+      number: "MH 31 KL 1234",
+      model: "Maruti Swift",
+      color: "Blue"
+    },
+    status: "Completed"
+  },
+  {
+    id: 9,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 5)).setHours(14, 30, 0, 0)),
+    user: {
+      id: 10,
+      fullName: "Sonia Gandhi",
+      department: "Administration",
+      profileImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2"
+    },
+    startLocation: "Lutyens Delhi",
+    endLocation: "Parliament House, Delhi",
+    cab: {
+      id: 9,
+      number: "DL 03 MN 5678",
+      model: "Toyota Fortuner",
+      color: "White"
+    },
+    status: "Completed"
+  },
+  
+  // Last week rides (7-13 days ago)
+  {
+    id: 10,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 7)).setHours(10, 0, 0, 0)),
+    user: {
+      id: 11,
+      fullName: "Piyush Goyal",
+      department: "Finance",
+      profileImage: "https://images.unsplash.com/photo-1566492031773-4f4e44671857"
+    },
+    startLocation: "Worli",
+    endLocation: "Nariman Point, Mumbai",
+    cab: {
+      id: 10,
+      number: "MH 01 OP 9012",
+      model: "Honda City",
+      color: "Silver"
+    },
+    status: "Completed"
+  },
+  {
+    id: 11,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 10)).setHours(8, 45, 0, 0)),
+    user: {
+      id: 12,
+      fullName: "Nirmala Sitharaman",
+      department: "Finance",
+      profileImage: "https://images.unsplash.com/photo-1599842057874-37393e9342df"
+    },
+    startLocation: "R.K. Puram",
+    endLocation: "North Block, Delhi",
+    cab: {
+      id: 11,
+      number: "DL 04 QR 3456",
+      model: "Toyota Camry",
+      color: "Black"
+    },
+    status: "Completed"
+  },
+  
+  // This month (14-30 days ago)
+  {
+    id: 12,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 15)).setHours(9, 30, 0, 0)),
+    user: {
+      id: 13,
+      fullName: "S. Jaishankar",
+      department: "External Affairs",
+      profileImage: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5"
+    },
+    startLocation: "Chanakyapuri",
+    endLocation: "South Block, Delhi",
+    cab: {
+      id: 12,
+      number: "DL 05 ST 7890",
+      model: "BMW 5 Series",
+      color: "Blue"
+    },
+    status: "Completed"
+  },
+  {
+    id: 13,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 20)).setHours(11, 0, 0, 0)),
+    user: {
+      id: 14,
+      fullName: "Rajnath Singh",
+      department: "Defense",
+      profileImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+    },
+    startLocation: "Delhi Cantonment",
+    endLocation: "South Block, Delhi",
+    cab: {
+      id: 13,
+      number: "DL 06 UV 1234",
+      model: "Mercedes E-Class",
+      color: "Black"
+    },
+    status: "Completed"
+  },
+  {
+    id: 14,
+    startTime: new Date(new Date(new Date().setDate(new Date().getDate() - 25)).setHours(14, 15, 0, 0)),
+    user: {
+      id: 15,
+      fullName: "Priyanka Gandhi",
+      department: "Marketing",
+      profileImage: "https://images.unsplash.com/photo-1551727974-8af20a3811ff"
+    },
+    startLocation: "Lodhi Estate",
+    endLocation: "AICC Headquarters, Delhi",
+    cab: {
+      id: 14,
+      number: "DL 07 WX 5678",
+      model: "Maruti Suzuki Ertiga",
+      color: "Silver"
+    },
+    status: "Completed"
   }
 ];
 

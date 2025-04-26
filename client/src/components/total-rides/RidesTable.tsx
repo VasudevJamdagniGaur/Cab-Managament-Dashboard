@@ -59,14 +59,15 @@ export function RidesTable({ rides: initialRides }: RidesTableProps) {
                            rideDate.getMonth() === today.getMonth() && 
                            rideDate.getDate() === today.getDate();
     } else if (selectedTab === "week") {
-      // This week
+      // This week (last 7 days)
       const weekAgo = new Date(today);
       weekAgo.setDate(today.getDate() - 7);
-      matchesTimePeriod = rideDate >= weekAgo;
+      matchesTimePeriod = rideDate >= weekAgo && rideDate <= now;
     } else if (selectedTab === "month") {
-      // This month
-      matchesTimePeriod = rideDate.getFullYear() === today.getFullYear() && 
-                           rideDate.getMonth() === today.getMonth();
+      // This month (last 30 days)
+      const monthAgo = new Date(today);
+      monthAgo.setDate(today.getDate() - 30);
+      matchesTimePeriod = rideDate >= monthAgo && rideDate <= now;
     }
     
     // Filter by time slot
