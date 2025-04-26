@@ -1,9 +1,63 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Maximize, RefreshCw } from "lucide-react";
+import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
+import { Icon, LatLngExpression } from "leaflet";
+import "leaflet/dist/leaflet.css";
+
+// Fix Leaflet marker icons issue in React
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+// Delhi coordinates
+const DELHI_POSITION: LatLngExpression = [28.6139, 77.2090];
+
+// Define vehicle markers with different statuses
+const vehicleMarkers = [
+  { 
+    id: 1, 
+    position: [28.6329, 77.2195] as LatLngExpression, 
+    status: "moving", 
+    driver: "Raj Kumar", 
+    vehicle: "DL-01-AB-1234", 
+    passengers: 2 
+  },
+  { 
+    id: 2, 
+    position: [28.5621, 77.2841] as LatLngExpression, 
+    status: "idle", 
+    driver: "Amit Singh", 
+    vehicle: "DL-02-CD-5678", 
+    passengers: 3 
+  },
+  { 
+    id: 3, 
+    position: [28.7041, 77.1025] as LatLngExpression, 
+    status: "delayed", 
+    driver: "Priya Sharma", 
+    vehicle: "DL-03-EF-9012", 
+    passengers: 1 
+  },
+];
 
 export function LiveMap() {
   const [isLoading, setIsLoading] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
+
+  // Fix Leaflet's default icon
+  useEffect(() => {
+    delete (window as any).L.Icon.Default.prototype._getIconUrl;
+    (window as any).L.Icon.Default.mergeOptions({
+      iconRetinaUrl: markerIcon2x,
+      iconUrl: markerIcon,
+      shadowUrl: markerShadow,
+    });
+  }, []);
+
+  useEffect(() => {
+    setMapReady(true);
+  }, []);
 
   const handleRefresh = () => {
     setIsLoading(true);
@@ -11,6 +65,49 @@ export function LiveMap() {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
+  };
+
+  // Custom marker icons
+  const movingIcon = new Icon({
+    iconUrl: markerIcon,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    className: 'moving-marker'
+  });
+
+  const idleIcon = new Icon({
+    iconUrl: markerIcon,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    className: 'idle-marker'
+  });
+
+  const delayedIcon = new Icon({
+    iconUrl: markerIcon,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    className: 'delayed-marker'
+  });
+
+  const getMarkerIcon = (status: string) => {
+    switch (status) {
+      case "moving": return movingIcon;
+      case "idle": return idleIcon;
+      case "delayed": return delayedIcon;
+      default: return new Icon.Default();
+    }
+  };
+
+  const getMarkerColor = (status: string) => {
+    switch (status) {
+      case "moving": return "green";
+      case "idle": return "blue";
+      case "delayed": return "orange";
+      default: return "gray";
+    }
   };
 
   return (
@@ -27,25 +124,49 @@ export function LiveMap() {
       </CardHeader>
       <CardContent>
         <div className="relative w-full h-[400px] bg-gray-100 rounded-lg overflow-hidden">
-          <img 
-            src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-            alt="Map View" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+          {mapReady && (
+            <MapContainer 
+              center={DELHI_POSITION} 
+              zoom={12} 
+              style={{ height: '100%', width: '100%' }} 
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              
+              {vehicleMarkers.map(marker => (
+                <div key={marker.id}>
+                  <Marker 
+                    position={marker.position} 
+                    icon={getMarkerIcon(marker.status)}
+                  >
+                    <Popup>
+                      <div className="p-1">
+                        <div className="font-semibold">{marker.vehicle}</div>
+                        <div>Driver: {marker.driver}</div>
+                        <div>Status: <span className={`font-medium text-${getMarkerColor(marker.status)}-600`}>{marker.status}</span></div>
+                        <div>Passengers: {marker.passengers}</div>
+                      </div>
+                    </Popup>
+                  </Marker>
+                  <Circle 
+                    center={marker.position} 
+                    radius={300} 
+                    pathOptions={{ 
+                      color: getMarkerColor(marker.status), 
+                      fillColor: getMarkerColor(marker.status),
+                      fillOpacity: 0.1, 
+                      weight: 1 
+                    }} 
+                  />
+                </div>
+              ))}
+            </MapContainer>
+          )}
           
-          {/* Map markers would go here in a real implementation */}
-          <div className="absolute top-20 left-1/4 transform -translate-x-1/2">
-            <div className="bg-green-500 h-3 w-3 rounded-full animate-pulse"></div>
-          </div>
-          <div className="absolute top-1/2 left-1/3 transform -translate-x-1/2">
-            <div className="bg-blue-500 h-3 w-3 rounded-full animate-pulse"></div>
-          </div>
-          <div className="absolute bottom-1/3 right-1/4 transform -translate-x-1/2">
-            <div className="bg-yellow-500 h-3 w-3 rounded-full animate-pulse"></div>
-          </div>
-          
-          <div className="absolute bottom-4 left-4 flex space-x-2">
+          <div className="absolute bottom-4 left-4 z-[1000] flex space-x-2">
             <div className="flex items-center text-xs bg-white bg-opacity-90 px-2 py-1 rounded shadow-sm">
               <div className="bg-green-500 h-2 w-2 rounded-full mr-1"></div>
               <span>Moving</span>
@@ -60,7 +181,7 @@ export function LiveMap() {
             </div>
           </div>
           
-          <div className="absolute top-4 right-4">
+          <div className="absolute top-4 right-4 z-[1000]">
             <button className="bg-white bg-opacity-90 rounded-full p-2 shadow-md hover:bg-opacity-100 transition">
               <Maximize className="h-5 w-5 text-primary-700" />
             </button>
