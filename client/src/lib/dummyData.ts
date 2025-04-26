@@ -7,10 +7,36 @@ export const branchOptions = [
 ];
 
 export const dashboardStats = {
-  totalRidesToday: 238,
-  liveTrips: 42,
-  monthlyCost: 386420,
-  avgRating: 4.7
+  all: {
+    totalRidesToday: 238,
+    liveTrips: 42,
+    monthlyCost: 386420,
+    avgRating: 4.7
+  },
+  Delhi: {
+    totalRidesToday: 98,
+    liveTrips: 18,
+    monthlyCost: 156840,
+    avgRating: 4.5
+  },
+  Mumbai: {
+    totalRidesToday: 72,
+    liveTrips: 13,
+    monthlyCost: 123500,
+    avgRating: 4.8
+  },
+  Bangalore: {
+    totalRidesToday: 52,
+    liveTrips: 8,
+    monthlyCost: 78250,
+    avgRating: 4.6
+  },
+  Hyderabad: {
+    totalRidesToday: 16,
+    liveTrips: 3,
+    monthlyCost: 27830,
+    avgRating: 4.9
+  }
 };
 
 export const recentReviews = [
